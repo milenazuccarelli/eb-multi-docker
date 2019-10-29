@@ -20,7 +20,7 @@ after_success:
   - docker push milescolonia/multi-nginx
   - docker push milescolonia/multi-server
   - docker push milescolonia/multi-worker
-
+  
 deploy:
   provider: elasticbeanstalk
   region: eu-west-3
