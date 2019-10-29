@@ -9,10 +9,10 @@ script:
   - docker run -e CI=true milescolonia/react-test npm test
 
 after_success:
-  - docker build -t milescolonia/multi-client ./client
-  - docker build -t milescolonia/multi-nginx ./nginx
-  - docker build -t milescolonia/multi-server ./server
-  - docker build -t milescolonia/multi-worker ./worker
+  - docker build --cache-from milescolonia/multi-client:latest \ -t milescolonia/multi-client ./client
+  - docker build --cache-from milescolonia/multi-nginx:latest \ -t milescolonia/multi-nginx ./nginx
+  - docker build --cache-from milescolonia/multi-server:latest \ -t milescolonia/multi-server ./server
+  - docker build --cache-from milescolonia/multi-worker:latest \ -t milescolonia/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
